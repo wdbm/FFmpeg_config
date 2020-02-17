@@ -27,7 +27,8 @@ sudo apt -y install   \
     libmp3lame-dev    \
     libopus-dev       \
     yasm
-_version="4.1.1"
+#_version="4.1.1"
+_version="4.2.2"
 wget http://ffmpeg.org/releases/ffmpeg-"${_version}".tar.bz2
 tar -xvf ffmpeg-"${_version}".tar.bz2
 cd ffmpeg-"${_version}"
@@ -35,9 +36,10 @@ cd ffmpeg-"${_version}"
     --enable-gpl       \
     --enable-libmp3lame\
     --enable-libopus   \
+    --enable-libtheora \
     --enable-libvorbis \
     --enable-libx264
-make -j"$(echo "$(nproc)-1" | bc)"
+time make -j"$(echo "$(nproc)-1" | bc)"
 sudo make install
 cd ..
 rm ffmpeg-"${_version}".tar.bz2
